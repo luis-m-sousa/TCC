@@ -31,7 +31,7 @@
 
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong>Email e/ou senha não encontrado(s).</strong>
                                                     </span>
                                                 @enderror
                                             </div>
@@ -47,7 +47,7 @@
 
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                        <strong>Email e/ou senha não encontrado(s).</strong>
                                                     </span>
                                                 @enderror
                                             </div>

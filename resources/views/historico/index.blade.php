@@ -20,6 +20,7 @@
                                                         <th scope="col">Taxa</th>
                                                         <th scope="col">Tempo</th>
                                                         <th scope="col">Parecela</th>
+                                                        <th scope="col">Ações</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>

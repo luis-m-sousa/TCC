@@ -12,11 +12,13 @@ class SimulacaoTableSeeder extends Seeder
     {
         $users = User::all();
 
+        /*
         foreach ($users as $user) {
             Simulacao::factory()->create([
                 'user_id' => $user->id,
                 'tempo' => rand(1, 12)
             ]);
         }
+        */
 }
 }

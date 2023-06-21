@@ -23,7 +23,7 @@
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                                    <strong>Nome inválido.</strong>
                                 </span>
                             @enderror
                         </div>
@@ -34,7 +34,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>Email já cadastrado.</strong>
                                     </span>
                                 @enderror
                     </div>
@@ -45,7 +45,7 @@
 
                       @error('password')
                           <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
+                              <strong>Senha inválida, por favor insira uma senha com no mínimo 8 caracteres.</strong>
                           </span>
                       @enderror
                     </div>

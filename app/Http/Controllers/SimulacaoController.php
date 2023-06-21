@@ -16,7 +16,6 @@ class SimulacaoController extends Controller
         $historico = Simulacao::where('user_id', $usuarioId)
             ->orderBy('id', 'asc')
             ->paginate(5);
-
         return view('historico.index', ['historico' => $historico]);
     }
 

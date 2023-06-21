@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SimulacaoController;
 use App\Models\Simulacao;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,12 @@ use App\Models\Simulacao;
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-Route::post('/emprestimo', [SimulacaoController::class, 'store'])->name('simulacao.store')->middleware('auth');
 Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/historico',[SimulacaoController::class, 'historico'])->name('historico.index')->middleware('auth');
+Route::post('/emprestimo',[SimulacaoController::class, 'store'])->name('simulacao.store')->middleware('auth');
+
 Route::get('/historico',[SimulacaoController::class, 'historico'])->name('historico.index')->middleware('auth');
 Route::get('/historico/delete/{id}',[SimulacaoController::class, 'delete'])->name('historico.delete')->middleware('auth');
 

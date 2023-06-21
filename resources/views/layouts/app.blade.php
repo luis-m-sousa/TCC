@@ -32,7 +32,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark bg-black">
             <div class="container">
-                <a class="navbar-brand">
+                <a class="navbar-brand" href="{{route('home')}}">
                     St<img class="loginGoogle" src="{{ asset('build/assets/estrela.png') }}" alt="Estrela"
                         style="height: 20px">rVault
                 </a>
@@ -73,6 +73,9 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('home') }}">
                                         {{ __('Principal') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('historico.index') }}">
+                                        {{ __('Histórico') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
