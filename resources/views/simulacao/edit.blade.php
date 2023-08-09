@@ -15,7 +15,7 @@
                                 @csrf
                                 <div class="justify-content-center align-items-center">
                                 <div class="text-center">
-                                    <h4>Empréstimo</h4>
+                                    <h4>Editando Empréstimo de ID {{$simulacao->id}}</h4>
                                 </div>
                                 <div class="row text-center justify-content-center align-items-center">
                                     <div class="btn-group dropup w-auto">

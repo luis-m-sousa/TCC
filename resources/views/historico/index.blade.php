@@ -16,10 +16,10 @@
                                                     <thead>
                                                     <tr>
                                                         <th scope="col">Tipo</th>
-                                                        <th scope="col">Valor</th>
-                                                        <th scope="col">Taxa</th>
-                                                        <th scope="col">Tempo</th>
-                                                        <th scope="col">Parecela</th>
+                                                        <th scope="col">Valor (R$)</th>
+                                                        <th scope="col">Taxa (%)</th>
+                                                        <th scope="col">Tempo (meses)</th>
+                                                        <th scope="col">Parecela (R$)</th>
                                                         <th scope="col">Ações</th>
                                                     </tr>
                                                     </thead>
