@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AutocompleteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SimulacaoController;
 use App\Models\Simulacao;
@@ -25,10 +26,14 @@ Route::get('/', function () {
 });
 
 Route::post('/emprestimo',[SimulacaoController::class, 'store'])->name('simulacao.store')->middleware('auth');
+Route::get('/emprestimo', function(){return view('simulacao.create');})->middleware('auth');
+
 
 Route::get('/historico',[SimulacaoController::class, 'historico'])->name('historico.index')->middleware('auth');
 Route::get('/historico/delete/{id}',[SimulacaoController::class, 'delete'])->name('historico.delete')->middleware('auth');
+Route::get('/historico/edit/{id}', [SimulacaoController::class, 'edit'])->name('historico.edit')->middleware('auth');
+Route::post('/historico/update/{id}',[SimulacaoController::class, 'update'])->name('simulacao.update')->middleware('auth');
 
-Route::get('/emprestimo', function(){
-    return view('simulacao');
-})->middleware('auth');
+
+Route::get('/teste', [AutocompleteController::class, 'index']);
+Route::get('/autocomplete-search', [AutocompleteController::class, 'autocompleteSearch']);

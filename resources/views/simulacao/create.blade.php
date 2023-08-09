@@ -2,7 +2,6 @@
 @section('content')
 @section('scripts')
     <script src="{{ asset('js/simulacao.js') }}" defer></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 @endsection
 <div class="container">
     <div class="container py-5 h-100">
@@ -35,30 +34,34 @@
                                 </div>
                                 <div class="row text-center justify-content-center align-items-center w-auto">
                                     <input
-                                        class="input-group btn-outline-danger rounded mb-3 form-control w-auto mt-3 text-black"
-                                        type="number" id="valor" name="valor" placeholder="Valor">
+                                        class="input-group btn-outline-danger rounded mb-3 form-control mt-3 text-black"
+                                        type="number" id="valor" name="valor" placeholder="Valor" style="width: 40%">
                                 </div>
                                 <div class="row text-center justify-content-center align-items-center w-auto">
                                     <input
-                                        class="input-group btn-outline-danger rounded mb-3 form-control w-auto text-black"
+                                        class="input-group btn-outline-danger rounded mb-3 form-control text-black"
                                         type="number" step="0.01" id="taxa" name="taxa"
-                                        placeholder="taxa (% a.m)">
+                                        placeholder="taxa (% a.m)" style="width: 20%">
+                                        <input
+                                        class="input-group btn-outline-danger rounded mb-3 form-control text-black"
+                                        type="text" id="banco" name="banco"
+                                        placeholder="Banco" style="width: 20%">
                                 </div>
                                 <div class="row text-center justify-content-center align-items-center w-auto">
                                     <input
-                                        class="input-group btn-outline-danger rounded mb-3 form-control w-auto text-black"
-                                        type="number" id="tempo" name="tempo" placeholder="Tempo (em meses)">
+                                        class="input-group btn-outline-danger rounded mb-3 form-control  text-black"
+                                        type="number" id="tempo" name="tempo" placeholder="Tempo (em meses)" style="width: 40%">
                                 </div>
                                 <div class="row text-center justify-content-center align-items-center w-auto">
                                     <input
-                                        class="input-group btn-outline-danger rounded mb-3 form-control w-auto text-black"
+                                        class="input-group btn-outline-danger rounded mb-3 form-control text-black"
                                         type="number" step="0.01" id="parcela" name="parcela"
-                                        placeholder="Parcela">
+                                        placeholder="Parcela" style="width: 40%">
                                 </div>
                                 <div
                                     class="row text-center justify-content-center align-items-center w-auto text-black">
                                     <input class="btn btn-primary text-black mb-3 w-auto" type="button"
-                                        value="Calcular" onclick="calcular()">
+                                        value="Calcular" onclick="calcular()" >
                                 </div>
                                 <div id="resultado"
                                     class="text-center row justify-content-center align-items-center w-auto">O Resultado aparecerá aqui</div>
@@ -187,9 +190,12 @@
     }
 
     $(document).ready(function() {
+
         setTimeout(function() {
             $(".session-alert").alert('close');
-        }, 5000); // Tempo em milissegundos (neste exemplo, 5 segundos)
+        }, 5000);
     });
+
+
 </script>
 @endsection

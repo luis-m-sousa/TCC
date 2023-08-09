@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('simulacao', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
+            $table->string('tipo');
             $table->decimal('valor', 10, 2);
             $table->decimal('taxa', 5, 2);
             $table->integer('tempo');

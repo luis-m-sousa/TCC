@@ -33,6 +33,7 @@
                                                             <td>{{ $simulacao->parcela}}</td>
                                                             <td>
                                                                 <a href="{{ route('historico.delete', [$simulacao->id]) }}"><button class="btn btn-danger btn-sm">Excluir</button></a>
+                                                                <a href="{{ route('historico.edit', [$simulacao->id])}}"><button class="btn btn-primary btn-sm">Editar</button></a>
                                                             </td>
                                                         </tr>
                                                         @endforeach

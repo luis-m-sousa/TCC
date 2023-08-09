@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('taxa', function (Blueprint $table) {
             $table->id();
             $table->string('banco');
-            $table->decimal('taxa', 5, 2);
+            $table->string('tipo_taxa');
+            $table->decimal('valor', 5, 2);
             $table->timestamps();
         });
     }

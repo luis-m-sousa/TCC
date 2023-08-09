@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Simulacao;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB as DB;
 class SimulacaoController extends Controller
 {
+
+    function index()
+    {
+        return view('simulacao.create');
+    }
 
     public function historico(Request $request)
     {
@@ -27,7 +32,8 @@ class SimulacaoController extends Controller
             'taxa' => 'required',
             'tempo' => 'required',
             'parcela' => 'required',
-        ]);
+        ]
+    );
 
         // Cria uma nova instância do modelo Simulacao e define os valores dos campos
         $simulacao = new Simulacao();
@@ -51,4 +57,22 @@ class SimulacaoController extends Controller
 
         return redirect()->route('historico.index');
     }
+
+    public function edit(Request $request, $id) {
+        $simulacao = Simulacao::findOrFail($id);
+        return view('simulacao.edit', ['simulacao' => $simulacao]);
+    }
+
+    public function update(Request $request, $id) {
+
+        $simulacao = Simulacao::findOrFail($id);
+        $simulacao->valor = $request->valor;
+        $simulacao->taxa = $request->taxa;
+        $simulacao->tempo = $request->tempo;
+        $simulacao->parcela = $request->parcela;
+        $simulacao->save();
+
+        return redirect()->route('historico.index');
+    }
+
 }
