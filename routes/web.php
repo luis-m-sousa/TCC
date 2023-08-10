@@ -27,6 +27,8 @@ Route::get('/', function () {
 
 Route::post('/emprestimo',[SimulacaoController::class, 'store'])->name('simulacao.store')->middleware('auth');
 Route::get('/emprestimo', function(){return view('simulacao.create');})->middleware('auth');
+Route::post('/emprestimo/taxa', [SimulacaoController::class, 'obterTaxa'])->name('obterTaxa');
+Route::post('/emprestimo/banco', [SimulacaoController::class, 'obterSugestoesBanco'])->name('obterSugestoesBanco');
 
 
 Route::get('/historico',[SimulacaoController::class, 'historico'])->name('historico.index')->middleware('auth');
@@ -37,3 +39,7 @@ Route::post('/historico/update/{id}',[SimulacaoController::class, 'update'])->na
 
 Route::get('/teste', [AutocompleteController::class, 'index']);
 Route::get('/autocomplete-search', [AutocompleteController::class, 'autocompleteSearch']);
+
+Route::get('/grafico', function(){
+    return view('grafico');
+});

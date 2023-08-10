@@ -7,6 +7,8 @@ use App\Models\Simulacao;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as DB;
+use App\Models\Taxa;
+
 class SimulacaoController extends Controller
 {
 
@@ -63,13 +65,13 @@ class SimulacaoController extends Controller
         $simulacao->save();
 
         // Retorna uma resposta de sucesso
-        return back()->with('success', 'Simulação salva com sucesso! Acesse o histórico de simulações para visualizá-la');
+        return back()->with('success', 'Simulação salva com sucesso! Acesse o histórico de simulações para visualizá-la.');
     }
     public function delete(Request $request, $id) {
         $obj = Simulacao::findOrFail($id);
         $obj->delete();
 
-        return redirect()->route('historico.index');
+        return back()->with('success', 'Deleção feita com sucesso!');
     }
 
     public function edit(Request $request, $id) {
@@ -86,7 +88,38 @@ class SimulacaoController extends Controller
         $simulacao->parcela = $request->parcela;
         $simulacao->save();
 
-        return redirect()->route('historico.index');
+        return redirect()->route('historico.index')->with('success', 'Edição feita com sucesso!.');
     }
+
+    public function obterTaxa(Request $request)
+{
+    $banco = $request->input('banco');
+    $taxa = Taxa::where('banco', $banco)->first();
+
+    if ($taxa) {
+        return response()->json(['taxa' => $taxa->valor]);
+    } else {
+        return response()->json(['taxa' => null]);
+    }
+}
+
+
+public function obterSugestoesBanco(Request $request)
+{
+    $inputText = $request->input('inputText');
+
+    $suggestions = Taxa::distinct()
+        ->select('banco')
+        ->where('banco', 'LIKE', '%' . $inputText . '%')
+        ->pluck('banco')
+        ->toArray();
+
+    return response()->json(['suggestions' => $suggestions]);
+}
+
+
+
+
+
 
 }

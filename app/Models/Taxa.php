@@ -13,5 +13,6 @@ class Taxa extends Model
     protected $fillable = [
         'banco',
         'taxa',
+        'tipo_taxa'
     ];
 }

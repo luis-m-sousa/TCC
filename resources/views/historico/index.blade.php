@@ -12,6 +12,20 @@
                                         </div>
                                         <div class="row text-center justify-content-center align-items-center">
                                             <div class="table-responsive">
+                                                @if (session('success'))
+                                                <div class="alert alert-success alert-dismissible fade show session-alert bg-black text-white"
+                                                    role="alert" style="border: none">
+                                                    <div class="alert-heading d-flex justify-content-between align-items-center">
+                                                        <h4 class="alert-heading-text">Sucesso!</h4>
+                                                        <button type="button" class="close btn btn-primary" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true"><b>&times;</b></span>
+                                                        </button>
+                                                    </div>
+                                                    <hr>
+                                                    <p class="mb-0">{{ session('success') }}</p>
+                                                </div>
+                                            @endif
                                                 <table class="table text-white">
                                                     <thead>
                                                     <tr>
