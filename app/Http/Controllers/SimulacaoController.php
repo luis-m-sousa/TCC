@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banco;
 use Illuminate\Http\Request;
 use App\Models\Simulacao;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB as DB;
 use App\Models\Taxa;
+use Carbon\Carbon;
+use DateTime;
+use Illuminate\Support\Facades\Date;
 
 class SimulacaoController extends Controller
 {
@@ -34,8 +38,10 @@ class SimulacaoController extends Controller
             'taxa' => 'required|numeric|min:0',
             'tempo' => 'required|numeric|min:0',
             'parcela' => 'required|numeric|min:0',
+            'titulo' => 'required',
         ],
         [
+            'titulo.required' => 'O campo de título é obrigatório',
             'valor.required' => 'O campo valor é obrigatório.',
             'valor.numeric' => 'O campo valor deve ser um número.',
             'valor.min' => 'O valor mínimo para o campo valor é 0.',
@@ -57,6 +63,9 @@ class SimulacaoController extends Controller
         $simulacao->taxa = $request->taxa;
         $simulacao->tempo = $request->tempo;
         $simulacao->parcela = $request->parcela;
+        $simulacao->titulo = $request->titulo;
+        $simulacao->tipo = "Não definido";
+        $simulacao->data_criacao = Carbon::now();
         
         $user_id = Auth::id();
         $simulacao->user_id = $user_id;
@@ -65,7 +74,7 @@ class SimulacaoController extends Controller
         $simulacao->save();
 
         // Retorna uma resposta de sucesso
-        return back()->with('success', 'Simulação salva com sucesso! Acesse o histórico de simulações para visualizá-la.');
+        return back()->with('success', 'Simulação salva com sucesso! Acesse a aba "Minhas Simulações" para visualizá-la.');
     }
     public function delete(Request $request, $id) {
         $obj = Simulacao::findOrFail($id);
@@ -82,6 +91,7 @@ class SimulacaoController extends Controller
     public function update(Request $request, $id) {
 
         $simulacao = Simulacao::findOrFail($id);
+        $simulacao->titulo = $request->titulo;
         $simulacao->valor = $request->valor;
         $simulacao->taxa = $request->taxa;
         $simulacao->tempo = $request->tempo;
@@ -108,10 +118,10 @@ public function obterSugestoesBanco(Request $request)
 {
     $inputText = $request->input('inputText');
 
-    $suggestions = Taxa::distinct()
-        ->select('banco')
-        ->where('banco', 'LIKE', '%' . $inputText . '%')
-        ->pluck('banco')
+    $suggestions = Banco::distinct()
+        ->select('nome')
+        ->where('nome', 'LIKE', '%' . $inputText . '%')
+        ->pluck('nome')
         ->toArray();
 
     return response()->json(['suggestions' => $suggestions]);

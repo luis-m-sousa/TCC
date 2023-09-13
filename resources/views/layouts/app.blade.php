@@ -30,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="{{ asset('js/simulacaov2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ asset('build/css/style.css')}}">
 </head>
 
 <body>
@@ -67,6 +68,9 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('faq') }}">{{ __('Perguntas Frequentes') }}</a>
+                                </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-capitalize" href="#" role="button"
@@ -79,7 +83,10 @@
                                         {{ __('Principal') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('historico.index') }}">
-                                        {{ __('Histórico') }}
+                                        {{ __('Minhas Simulações') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('faq') }}">
+                                        {{ __('Perguntas Frequentes') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();

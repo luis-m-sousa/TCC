@@ -12,10 +12,13 @@ class Simulacao extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'valor_total',
+        'valor',
         'taxa',
         'tempo',
         'parcela',
+        'titulo',
+        'tipo',
+        'data_criacao',
     ];
 
     // Relação com o usuário

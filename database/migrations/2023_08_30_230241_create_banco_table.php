@@ -11,15 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('taxa', function (Blueprint $table) {
+        Schema::create('banco', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tipo_taxa_id');
-            $table->foreignId('banco_id');
-            $table->decimal('valor', 5, 2);
+            $table->string('nome');
             $table->timestamps();
-
-            $table->foreign('tipo_taxa_id')->references('id')->on('tipo_taxa');
-            $table->foreign('banco_id')->references('id')->on('banco');
         });
     }
 
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('taxa');
+        Schema::dropIfExists('banco');
     }
 };

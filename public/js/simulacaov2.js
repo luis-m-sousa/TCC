@@ -1,12 +1,12 @@
     function calcular() {
-        var valor = document.getElementById("valor").value;
-        var taxa = document.getElementById("taxa").value;
-        var tempo = document.getElementById("tempo").value;
-        var parcela = document.getElementById("parcela").value;
-
+        var valor = parseFloat(document.getElementById("valor").value);
+        var taxa = parseFloat(document.getElementById("taxa").value);
+        var tempo = parseFloat(document.getElementById("tempo").value);
+        var parcela = parseFloat(document.getElementById("parcela").value);
+    
         //Validações lado front-end
 
-        if(valor < parcela){
+        if(valor < parcela && valor != 0){
             alert('O valor inicial deve ser maior que o da parcela!')
             return;
         }
@@ -112,6 +112,9 @@
     return taxa * 100; // Retorna a taxa de juros em porcentagem
 }
 
+    gerarGraficoBarra();
+    gerarGraficoDonut();
+
 
         // Apaga e mostra placeholders:
 
@@ -141,6 +144,107 @@
             this.placeholder = 'Parcela';
         });
 
+    }
+
+    function gerarGraficoBarra() {
+        var valor = parseFloat(document.getElementById("valor").value);
+        var taxa = parseFloat(document.getElementById("taxa").value);
+        var tempo = parseFloat(document.getElementById("tempo").value);
+        var parcela = parseFloat(document.getElementById("parcela").value);
+    
+        const ctx = document.getElementById('chartBarra').getContext('2d');
+    
+        // Verifique se o gráfico anterior existe e destrua-o
+        if (window.barraChart) {
+            window.barraChart.destroy();
+        }
+    
+        valorTotal = parcela * tempo;
+        valorJuros = valorTotal - valor;
+    
+        var valores = [valorTotal, valor, valorJuros, parcela];
+    
+        // Crie o novo gráfico
+        window.barraChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Valor Total', 'Valor Emprestado', 'Juros', 'Parcela'],
+                datasets: [{
+                    data: valores,
+                    borderWidth: 2,
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(75, 192, 192, 0.5)',
+                        'rgba(255, 206, 86, 0.5)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+    function gerarGraficoDonut(){
+
+        var valor = parseFloat(document.getElementById("valor").value);
+        var taxa = parseFloat(document.getElementById("taxa").value);
+        var tempo = parseFloat(document.getElementById("tempo").value);
+        var parcela = parseFloat(document.getElementById("parcela").value);
+    
+        const ctx = document.getElementById('chartDonut').getContext('2d');
+
+        if (window.donutChart) {
+            window.donutChart.destroy();
+        }
+        
+        valorTotal = parcela * tempo;
+        valorJuros = valorTotal - valor;
+
+        var valores = [valorTotal, valor, valorJuros, parcela];
+
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Valor Total', 'Valor Emprestado', 'Juros', 'Parcela'],
+                datasets: [{
+                    data: valores,
+                    borderWidth: 2,
+                    borderColor:[
+                        'rgba(255, 99, 132, 1)', 
+                        'rgba(54, 162, 235, 1)',  
+                        'rgba(75, 192, 192, 1)',  
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    backgroundColor:[
+                        'rgba(255, 99, 132, 0.5)', 
+                        'rgba(54, 162, 235, 0.5)',  
+                        'rgba(75, 192, 192, 0.5)',  
+                        'rgba(255, 206, 86, 0.5)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     }
 
     function changeDropdownText(itemName) {

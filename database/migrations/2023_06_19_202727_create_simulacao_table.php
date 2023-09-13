@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users');
             $table->string('tipo');
+            $table->string('titulo');
             $table->decimal('valor', 10, 2);
             $table->decimal('taxa', 5, 2);
             $table->integer('tempo');
             $table->float('parcela', 10, 2);
+            $table->date('data_criacao');
+            $table->foreignId('taxa_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('taxa_id')->references('id')->on('taxa');
         });
     }
 

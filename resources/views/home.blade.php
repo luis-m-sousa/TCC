@@ -15,12 +15,17 @@
                         <div class="text-center">
                                 <div> 
                                     <button type="button" class="btn btn-primary mb-3 ">
-                                        <a href="/emprestimo" style="text-decoration: none" class="text-black">Empréstimo</a>
+                                        <a href="/emprestimo" style="text-decoration: none" class="text-black">Realizar Simulação</a>
+                                    </button>
+                                </div>
+                                <div> 
+                                    <button type="button" class="btn btn-primary mb-3 ">
+                                        <a href="/comparar" style="text-decoration: none" class="text-black">Comparar Simulações</a>
                                     </button>
                                 </div>
                                 <div>
                                     <button type="button" class="btn btn-primary">
-                                        <a href="" style="text-decoration: none" class="text-black">Financiamento</a>
+                                        <a href="/faq" style="text-decoration: none" class="text-black">Perguntas Frequentes</a>
                                     </button>
                                 </div>
                         </div>
