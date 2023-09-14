@@ -39,6 +39,13 @@
                                 </li>
                                 <hr>
                                 <li>
+                                    <b>As simulações são realmente precisas?</b> <br>
+                                    R: As nossas simulações não consideram taxas administrativas, seguros de vida e outros pormenores incluídos em empréstimos. 
+                                    Essa é justamente a ideia do projeto, já que essa aplicação foi feita para "tirar a prova" de simulações que potencialmente podem
+                                    ser ofertadas para o usuário.
+                                </li>
+                                <hr>
+                                <li>
                                     <b>Como o sistema calcula as taxas de juros?</b> <br>
                                     R: O sistema utiliza como base a fórmula de empréstimos com prestações fixas disponibilizada pelo Banco Central e, a partir dos
                                     valores inseridos pelo usuário, realiza o cálculo. Vale lembrar que, caso o usuário tenha interesse, é possível inspecionar o Javascript
