@@ -22,9 +22,11 @@ return new class extends Migration
             $table->float('parcela', 10, 2);
             $table->date('data_criacao');
             $table->foreignId('taxa_id')->nullable();
+            $table->foreignId('banco_id')->nullable();
             $table->timestamps();
 
             $table->foreign('taxa_id')->references('id')->on('taxa');
+            $table->foreign('banco_id')->references('id')->on('banco');
         });
     }
 

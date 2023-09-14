@@ -2,32 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banco;
-use Illuminate\Http\Request;
 use App\Models\Simulacao;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB as DB;
-use App\Models\Taxa;
 use Carbon\Carbon;
-use DateTime;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class SimulacaoController extends Controller
+class PessoalPrivadoController extends Controller
 {
-
-    function index()
-    {
-        return view('simulacao.create');
-    }
-
-    public function historico(Request $request)
-    {
-        $usuarioId = auth()->user()->id;
-        $historico = Simulacao::where('user_id', $usuarioId)
-            ->orderBy('id', 'asc')
-            ->paginate(10);
-        return view('historico.index', ['historico' => $historico]);
+    public function index(){
+        return view ('pessoalPrivado.create');
     }
 
     public function store(Request $request)
@@ -64,7 +47,7 @@ class SimulacaoController extends Controller
         $simulacao->tempo = $request->tempo;
         $simulacao->parcela = $request->parcela;
         $simulacao->titulo = $request->titulo;
-        $simulacao->tipo = "Não definido";
+        $simulacao->tipo = "Pessoal Consignado Privado";
         $simulacao->data_criacao = Carbon::now();
         
         $user_id = Auth::id();
@@ -76,30 +59,5 @@ class SimulacaoController extends Controller
         // Retorna uma resposta de sucesso
         return back()->with('success', 'Simulação salva com sucesso! Acesse a aba "Minhas Simulações" para visualizá-la.');
     }
-    public function delete(Request $request, $id) {
-        $obj = Simulacao::findOrFail($id);
-        $obj->delete();
-
-        return back()->with('success', 'Deleção feita com sucesso!');
-    }
-
-    public function edit(Request $request, $id) {
-        $simulacao = Simulacao::findOrFail($id);
-        return view('simulacao.edit', ['simulacao' => $simulacao]);
-    }
-
-    public function update(Request $request, $id) {
-
-        $simulacao = Simulacao::findOrFail($id);
-        $simulacao->titulo = $request->titulo;
-        $simulacao->valor = $request->valor;
-        $simulacao->taxa = $request->taxa;
-        $simulacao->tempo = $request->tempo;
-        $simulacao->parcela = $request->parcela;
-        $simulacao->save();
-
-        return redirect()->route('historico.index')->with('success', 'Edição feita com sucesso!.');
-    }
-
 
 }

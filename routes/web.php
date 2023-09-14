@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SimulacaoController;
 use App\Http\Controllers\TaxaController;
 use App\Http\Controllers\CompararController;
+use App\Http\Controllers\PessoalPrivadoController;
+use App\Http\Controllers\PessoalnaoconsignadoController;
+use App\Http\Controllers\PessoalPublicoController;
 use App\Models\Simulacao;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,6 +36,17 @@ Route::get('/emprestimo', function(){return view('simulacao.create');})->middlew
 Route::post('/emprestimo/taxa', [SimulacaoController::class, 'obterTaxa'])->name('obterTaxa');
 Route::post('/emprestimo/banco', [SimulacaoController::class, 'obterSugestoesBanco'])->name('obterSugestoesBanco');
 
+Route::get('/pessoal-privado', [PessoalPrivadoController::class, 'index'])->name('pessoalPrivado.index')->middleware('auth');
+Route::post('/pessoal-privado', [PessoalPrivadoController::class, 'store'])->name('pessoalPrivado.store')->middleware('auth');
+
+Route::get('/pessoal-publico', [PessoalPublicoController::class, 'index'])->name('pessoalPublico.index')->middleware('auth');
+Route::post('/pessoal-publico', [PessoalPublicoController::class, 'store'])->name('pessoalPublico.store')->middleware('auth');
+
+Route::get('/pessoal-inss', [PessoalINSSController::class, 'index'])->name('pessoalINSS.index')->middleware('auth');
+Route::post('/pessoal-inss', [PessoalINSSController::class, 'store'])->name('pessoalINSS.store')->middleware('auth');
+
+Route::get('/pessoal-naoconsignado', [PessoalNaoConsignadoController::class, 'index'])->name('pessoalNaoConsignado.index')->middleware('auth');
+Route::post('/pessoal-naoconsignado', [PessoalNaoConsignadoController::class, 'store'])->name('pessoalNaoConsignado.store')->middleware('auth');
 
 Route::get('/historico',[SimulacaoController::class, 'historico'])->name('historico.index')->middleware('auth');
 Route::get('/historico/delete/{id}',[SimulacaoController::class, 'delete'])->name('historico.delete')->middleware('auth');
