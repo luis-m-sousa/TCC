@@ -62,7 +62,7 @@
                 //loop while usado para iterar e refinar a aproximação do tempo.
                 //O loop continua enquanto o valor absoluto da função f for maior que a tolerância e o número de iterações for menor que 500.
 
-                while (Math.abs(fTempo(tempo, valor, parcela, taxa)) > tolerancia && iteracoes < 500) {
+                while (Math.abs(fTempo(tempo, valor, parcela, taxa)) > tolerancia && iteracoes < 5000) {
                     tempo = tempo - fTempo(tempo, valor, parcela, taxa) / fTempoDerivative(tempo, valor, parcela, taxa);
                     iteracoes++;
                 }

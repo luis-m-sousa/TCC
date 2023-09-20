@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->decimal('valor', 10, 2);
             $table->decimal('taxa', 5, 2);
-            $table->integer('tempo');
+            $table->float('tempo');
             $table->float('parcela', 10, 2);
             $table->date('data_criacao');
             $table->foreignId('taxa_id')->nullable();
