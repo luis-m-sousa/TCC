@@ -13,14 +13,13 @@ class CompararController extends Controller
         return view('historico.comparar', ['simulacoes' => $simulacoes]);
     }
 
-    public function comparar(Request $request, $simulacao1Id, $simulacao2Id){
-        $simulacao1 = $request->input('simulacao1Id');
-        $simulacao2 = $request->input('simulacao2Id');
-        $simulacao1 = Simulacao::where('id', $simulacao1Id)->first();
-        $simulacao2 = Simulacao::where('id', $simulacao2Id)->first();
-    
-        return view('historico.comparacao', compact('simulacao1', 'simulacao2'));
-    }
-    
+    public function comparar(Request $request)
+{
+    $simulacao1Id = json_decode($request->input('simulacao1Id'));
+    $simulacao2Id = json_decode($request->input('simulacao2Id'));
+
+    return view('historico.comparacao', compact('simulacao1Id', 'simulacao2Id'));
+}
+
     
 }

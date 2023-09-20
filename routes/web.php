@@ -55,7 +55,7 @@ Route::post('/banco/update/{id}',[BancoController::class, 'update'])->name('banc
 Route::get('/banco/delete/{id}',[BancoController::class, 'delete'])->name('banco.delete');
 
 Route::get('/comparar', [CompararController::class, 'index'])->name('historico.comparar')->middleware('auth');
-Route::get('/comparar/{id1}/{id2}', [CompararController::class, 'comparar'])->name('historico.comparacao')->middleware('auth');
+Route::post('/comparar', [CompararController::class, 'comparar'])->name('historico.comparacao')->middleware('auth');
 
 
 

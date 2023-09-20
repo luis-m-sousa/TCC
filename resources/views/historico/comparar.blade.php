@@ -7,8 +7,7 @@
                 <div class="card rounded-3 text-black bg-black text-white">
                     <div class="row g-0">
                         <div class="card-body p-md-5 mx-md-4">
-
-                            <form class="mx-auto" method="GET" action="{{ route('historico.comparacao', ['id1' => 'simulacao1Id', 'id2' => 'simulacao2Id']) }}">
+                            <form method="POST" action="{{route('historico.comparacao')}}">
                                 @csrf
                                 <div class="justify-content-center align-items-center">
                                     <div class="text-center">
@@ -16,23 +15,21 @@
                                     </div>
                                     <div class="row text-center justify-content-center align-items-center w-auto">
                                         <h5 class="pt-5">Simulação 1</h5>
-                                        <select name="simulacao1Id" id="simulacao1Id">
+                                        <select name="simulacao1Id" id="simulacao1Id" class="form-select">
                                             @foreach ($simulacoes as $simulacao)
-                                                <option value="{{$simulacao->id}}">{{$simulacao->titulo}}</option>
+                                                <option value="{{ json_encode($simulacao) }}">{{ $simulacao->titulo }}</option>
                                             @endforeach
                                         </select>
                                         <h5 class="pt-5">Simulação 2</h5>
-                                        <select name="simulacao2Id" id="simulacao2Id">
+                                        <select name="simulacao2Id" id="simulacao2Id" class="form-select">
                                             @foreach ($simulacoes as $simulacao)
-                                                <option value="{{$simulacao->id}}">{{$simulacao->titulo}}</option>
+                                                <option value="{{ json_encode($simulacao) }}">{{ $simulacao->titulo }}</option>
                                             @endforeach
                                         </select>
-                                        <input type="submit" class="mt-5 btn btn-group btn-primary" value="Comparar">
                                     </div>
+                                    <input type="submit" class="btn btn-primary mt-5" value="Comparar Simulações">
                                 </div>
                             </form>
-
-
                         </div>
 
                     </div>
