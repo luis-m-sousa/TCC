@@ -134,11 +134,8 @@
                                             <input class="btn btn-primary text-black mb-3 w-auto" type="button"
                                                 value="Calcular" onclick="calcular()">
                                         </div>
-                                        <div id="resultado"
-                                            class="text-center row justify-content-center align-items-center w-auto">
-                                        </div>
-                                        <canvas id="chartBarra" class="p-5"></canvas>
-                                        <canvas id="chartDonut"></canvas>
+                                        <canvas id="chartDonut" class="p-5"></canvas>
+                                        <canvas id="chartBarra"></canvas>
                                         <div id="salvar"
                                             class="row text-center justify-content-center align-items-center w-auto text-black pt-2">
                                             <input type="submit" value="Salvar"

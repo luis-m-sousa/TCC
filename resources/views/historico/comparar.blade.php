@@ -8,7 +8,7 @@
                     <div class="row g-0">
                         <div class="card-body p-md-5 mx-md-4">
 
-                            <form class="mx-auto" method="GET">
+                            <form class="mx-auto" method="GET" action="{{ route('historico.comparacao', ['id1' => 'simulacao1Id', 'id2' => 'simulacao2Id']) }}">
                                 @csrf
                                 <div class="justify-content-center align-items-center">
                                     <div class="text-center">

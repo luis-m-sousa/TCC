@@ -39,6 +39,13 @@
                                 </li>
                                 <hr>
                                 <li>
+                                    <b>As simulações são realmente precisas?</b> <br>
+                                    R: As nossas simulações não consideram taxas administrativas, seguros de vida e outros pormenores incluídos em empréstimos. Isso ocorre porque
+                                    cada banco utiliza valores diferentes, e tais valores não ficam disponíveis facilmente na internet. Sendo assim, nossas simulações servem mais para fins 
+                                    didáticos, no sentido de entender como funciona o cálculo.
+                                </li>
+                                <hr>
+                                <li>
                                     <b>Como o sistema calcula as taxas de juros?</b> <br>
                                     R: O sistema utiliza como base a fórmula de empréstimos com prestações fixas disponibilizada pelo Banco Central e, a partir dos
                                     valores inseridos pelo usuário, realiza o cálculo. Vale lembrar que, caso o usuário tenha interesse, é possível inspecionar o Javascript
@@ -60,6 +67,7 @@
                                 <li>
                                     <b>É possível compartilhar minhas simulações com outras pessoas?</b> <br>
                                     R: Sim, Na seção "Minhas Simulações" ao clicar no botão "Exportar" na aba "Ações" da simulação desejada.
+                                    Após isso, você será redirecionado para uma página com um PDF com os dados da simulação escolhida, sendo possível baixá-lo e compartilhá-lo.
                                 </li>
                             </ul>
                         </div>

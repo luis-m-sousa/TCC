@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutocompleteController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SimulacaoController;
 use App\Http\Controllers\TaxaController;
@@ -37,7 +38,8 @@ Route::get('/historico',[SimulacaoController::class, 'historico'])->name('histor
 Route::get('/historico/delete/{id}',[SimulacaoController::class, 'delete'])->name('historico.delete')->middleware('auth');
 Route::get('/historico/edit/{id}',[SimulacaoController::class, 'edit'])->name('historico.edit')->middleware('auth');
 Route::post('/historico/update/{id}',[SimulacaoController::class, 'update'])->name('simulacao.update')->middleware('auth');
-
+Route::get('/historico/exportar/{id}', [PdfController::class, 'geraPdf'])->name('historico.exportar')->middleware('auth');
+    
 Route::get('/taxa',[TaxaController::class, 'index'])->name('taxa.index');
 Route::get('/taxa/create',[TaxaController::class, 'create'])->name('taxa.create');
 Route::post('/taxa/create',[TaxaController::class, 'store'])->name('taxa.store');
@@ -52,8 +54,8 @@ Route::get('/banco/edit/{id}',[BancoController::class, 'edit'])->name('banco.edi
 Route::post('/banco/update/{id}',[BancoController::class, 'update'])->name('banco.update');
 Route::get('/banco/delete/{id}',[BancoController::class, 'delete'])->name('banco.delete');
 
-Route::get('/comparar', [CompararController::class, 'index'])->name('historico.comparar');
-Route::get('/comparar/{id1}/{id2}', [CompararController::class, 'comparar'])->name('historico.comparacao');
+Route::get('/comparar', [CompararController::class, 'index'])->name('historico.comparar')->middleware('auth');
+Route::get('/comparar/{id1}/{id2}', [CompararController::class, 'comparar'])->name('historico.comparacao')->middleware('auth');
 
 
 
