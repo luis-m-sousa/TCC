@@ -49,8 +49,16 @@
                                             <input
                                                 class="input-group btn-outline-danger rounded mb-3 form-control text-black"
                                                 type="number" step="0.01" id="taxa" name="taxa"
-                                                placeholder="taxa (% a.m)" style="width: 40%">
+                                                placeholder="taxa (% a.m)" style="width: 20%">
+                                            <input
+                                                class="input-group btn-outline-danger rounded mb-3 form-control text-black"
+                                                type="text" id="banco" name="banco" placeholder="Banco"
+                                                style="width: 20%">
                                         </div>
+                                        <div class="row text-center justify-content-center align-items-center w-auto">
+                                            <ul id="suggestions" class="w-auto mb-3 text-white list-group">
+                                                O banco aparecerá aqui
+                                            </ul>
                                         </div>
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('taxa')

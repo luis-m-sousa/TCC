@@ -57,4 +57,5 @@ class PessoalINSSController extends Controller
         // Retorna uma resposta de sucesso
         return back()->with('success', 'Simulação salva com sucesso! Acesse a aba "Minhas Simulações" para visualizá-la.');
     }
+    
 }
