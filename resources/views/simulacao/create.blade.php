@@ -7,7 +7,7 @@
                     <div class="card rounded-3 text-black bg-black text-white">
                         <div class="row g-0">
                             <div class="card-body p-md-5 mx-md-4">
-
+                                
                                 <form class="mx-auto" method="POST">
                                     @csrf
                                     <div class="justify-content-center align-items-center">
@@ -158,103 +158,4 @@
             </div>
         </div>
 
-    <script>
-
-        document.getElementById('banco').addEventListener('input', function() {
-            const banco = this.value;
-            if (banco === '') {
-                document.getElementById('taxa').value = '';
-                return;
-            }
-
-            fetch('{{ route('obterTaxa') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        banco: banco
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.taxa) {
-                        document.getElementById('taxa').value = data.taxa;
-                    } else {
-                        document.getElementById('taxa').value = 'Taxa não encontrada';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao obter a taxa:', error);
-                });
-        });
-
-        const bancoInput = document.getElementById('banco');
-        const suggestionsContainer = document.getElementById('suggestions');
-
-        bancoInput.addEventListener('input', function() {
-            const inputText = this.value;
-
-            if (inputText.length === 0) {
-                suggestionsContainer.innerHTML = '';
-                return;
-            }
-
-            fetch('{{ route('obterSugestoesBanco') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        inputText: inputText
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.suggestions.length > 0) {
-                        suggestionsContainer.innerHTML = data.suggestions.map(
-                            suggestion =>
-                            `<a class="list-group-item-action list-group-item text-black">${suggestion}</a>`
-                        ).join('');
-                    } else {
-                        suggestionsContainer.innerHTML = 'Nenhum banco encontrado';
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao obter sugestões de banco:', error);
-                });
-        });
-
-        suggestionsContainer.addEventListener('click', function(event) {
-            const selectedBanco = event.target.textContent;
-            bancoInput.value = selectedBanco;
-            suggestionsContainer.innerHTML = ''; // Limpa as sugestões
-
-            // Obtém a taxa correspondente usando uma nova solicitação AJAX
-            fetch('{{ route('obterTaxa') }}', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        banco: selectedBanco
-                    }),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.taxa !== null) {
-                        document.getElementById('taxa').value = data.taxa;
-                    } else {
-                        document.getElementById('taxa').value = ''; // Limpa o valor da taxa
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao obter a taxa:', error);
-                });
-        });
-    </script>
-    
 @endsection

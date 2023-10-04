@@ -284,3 +284,10 @@ $(document).ready(function() {
         $(".session-alert").alert('close');
     }, 5000);
 });
+
+// Sessão de pesquisa automática
+
+
+
+
+

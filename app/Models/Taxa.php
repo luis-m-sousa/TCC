@@ -18,11 +18,12 @@ class Taxa extends Model
     ];
 
     public function banco()
-    {
-        return $this->hasOne(Banco::class);
-    }
-    public function tipo_taxa()
-    {
-        return $this->hasOne(Tipo_taxa::class);
-    }
+{
+    return $this->belongsTo(Banco::class);
+}
+public function tipo_taxa()
+{
+    return $this->belongsTo(Tipo_taxa::class);
+}
+
 }

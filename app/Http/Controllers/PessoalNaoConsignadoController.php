@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banco;
 use App\Models\Simulacao;
+use App\Models\Taxa;
+use App\Models\Tipo_taxa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +48,7 @@ class PessoalNaoConsignadoController extends Controller
         $simulacao->tempo = $request->tempo;
         $simulacao->parcela = $request->parcela;
         $simulacao->titulo = $request->titulo;
-        $simulacao->tipo = "Pessoal Não Consignado";
+        $simulacao->tipo = "Crédito pessoal não consignado";
         $simulacao->data_criacao = Carbon::now();
         
         $user_id = Auth::id();
@@ -56,5 +59,31 @@ class PessoalNaoConsignadoController extends Controller
 
         // Retorna uma resposta de sucesso
         return back()->with('success', 'Simulação salva com sucesso! Acesse a aba "Minhas Simulações" para visualizá-la.');
+    }
+
+    public function getTaxa($nome)
+    {
+        $banco = Banco::where('nome', $nome)->first();
+        $tipo_taxa = Tipo_taxa::where('id', '1')->first();
+
+        if ($banco && $tipo_taxa) {
+            $taxa = Taxa::where('banco_id', $banco->id)
+                ->where('tipo_taxa_id', $tipo_taxa->id)
+                ->first();
+            if ($taxa) {
+                return response()->json($taxa->valor);
+            }
+        }
+        return response()->json(null);
+    }
+
+    public function getBancos(Request $request)
+    {
+        $search = $request->get('q');
+        $result = Banco::where('nome', 'LIKE', '%' . $search . '%')
+            ->whereHas('taxa', function ($query) {
+                $query->where('tipo_taxa_id', 1);
+            })->get();
+        return response()->json($result);
     }
 }

@@ -15,7 +15,8 @@ class Tipo_taxa extends Model
         'nome',
     ];
 
-    public function taxa(): BelongsTo{
-        return $this->belongsTo(Taxa::class);
+    public function taxa(){
+        return $this->hasMany(Taxa::class);
     }
+    
 }

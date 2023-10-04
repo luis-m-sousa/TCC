@@ -165,5 +165,35 @@
                 </div>
             </div>
         </div>
-    
-@endsection
+
+        <script>
+            $(document).ready(function() {
+                $('#banco').on('input', function() {
+                    var nome = $(this).val();
+                    if (nome.length > 1) {
+                        // Buscar sugestões de bancos
+                        $.get('/pessoal-inss/bancos?q=' + nome, function(data) {
+                            $('#suggestions').empty();
+                            data.forEach(function(item) {
+                                $('#suggestions').append('<li class="list-group-item">' + item
+                                    .nome + '</li>');
+                            });
+                        });
+                    }
+                });
+
+                $('#suggestions').on('click', 'li', function() {
+                    var nome = $(this).text();
+                    $('#banco').val(nome);
+                    $('#suggestions').empty();
+
+                    // Buscar taxa
+                    $.get('/pessoal-inss/banco/' + nome, function(data) {
+                        if (data) {
+                            $('#taxa').val(data);
+                        }
+                    });
+                });
+            });
+        </script>
+    @endsection

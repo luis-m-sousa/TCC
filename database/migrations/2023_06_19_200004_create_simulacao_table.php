@@ -18,15 +18,11 @@ return new class extends Migration
             $table->string('titulo');
             $table->decimal('valor', 10, 2);
             $table->decimal('taxa', 5, 2);
+            $table->string('banco')->nullable();
             $table->float('tempo');
             $table->float('parcela', 10, 2);
             $table->date('data_criacao');
-            $table->foreignId('taxa_id')->nullable();
-            $table->foreignId('banco_id')->nullable();
             $table->timestamps();
-
-            $table->foreign('taxa_id')->references('id')->on('taxa');
-            $table->foreign('banco_id')->references('id')->on('banco');
         });
     }
 

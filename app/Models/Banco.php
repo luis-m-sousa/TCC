@@ -14,7 +14,7 @@ class Banco extends Model
     protected $fillable = [
         'nome',
     ];
-    public function taxa(): BelongsTo{
-        return $this->belongsTo(Taxa::class);
+    public function taxa(){
+        return $this->hasMany(Taxa::class);
     }
 }
