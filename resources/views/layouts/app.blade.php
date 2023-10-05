@@ -110,5 +110,28 @@
         </main>
     </div>
 </body>
+<script>
+    document.getElementById('btnSwitch').addEventListener('click', () => {
+  if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+    document.documentElement.setAttribute('data-bs-theme', 'light');
+  } else {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+  }
+});
 
+const theme = window.localStorage.getItem('theme');
+
+if (theme === 'dark') document.body.classList.add('dark');
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+
+  if (theme === 'dark') {
+    window.localStorage.setItem('theme', 'light');
+  } else {
+    window.localStorage.setItem('theme', 'dark');
+  }
+});
+
+</script>
 </html>

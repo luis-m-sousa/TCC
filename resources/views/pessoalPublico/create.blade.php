@@ -4,7 +4,7 @@
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 bg-black text-white">
                         <div class="row g-0">
                             <div class="card-body p-md-5 mx-md-4">
 
