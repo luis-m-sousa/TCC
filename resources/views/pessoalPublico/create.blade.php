@@ -4,10 +4,10 @@
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 bg-black text-white">
                         <div class="row g-0">
                             <div class="card-body p-md-5 mx-md-4">
-                                
+
                                 <form class="mx-auto" method="POST">
                                     @csrf
                                     <div class="justify-content-center align-items-center">
@@ -49,8 +49,16 @@
                                             <input
                                                 class="input-group btn-outline-danger rounded mb-3 form-control text-black"
                                                 type="number" step="0.01" id="taxa" name="taxa"
-                                                placeholder="taxa (% a.m)" style="width: 40%">
+                                                placeholder="taxa (% a.m)" style="width: 20%">
+                                            <input
+                                                class="input-group btn-outline-danger rounded mb-3 form-control text-black"
+                                                type="text" id="banco" name="banco" placeholder="Banco"
+                                                style="width: 20%">
                                         </div>
+                                        <div class="row text-center justify-content-center align-items-center w-auto">
+                                            <ul id="suggestions" class="w-auto mb-3 text-white list-group">
+                                                O banco aparecerá aqui
+                                            </ul>
                                         </div>
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('taxa')
@@ -158,4 +166,35 @@
             </div>
         </div>
 
+        <script>
+            $(document).ready(function() {
+                $('#banco').on('input', function() {
+                    var nome = $(this).val();
+                    if (nome.length > 1) {
+                        // Buscar sugestões de bancos
+                        $.get('/pessoal-publico/bancos?q=' + nome, function(data) {
+                            $('#suggestions').empty();
+                            data.forEach(function(item) {
+                                $('#suggestions').append('<li class="list-group-item">' + item
+                                    .nome + '</li>');
+                            });
+                        });
+                    }
+                });
+
+                $('#suggestions').on('click', 'li', function() {
+                    var nome = $(this).text();
+                    $('#banco').val(nome);
+                    $('#suggestions').empty();
+
+                    // Buscar taxa
+                    $.get('/pessoal-publico/banco/' + nome, function(data) {
+                        if (data) {
+                            $('#taxa').val(data);
+                        }
+                    });
+                });
+            });
+        </script>
+    
 @endsection

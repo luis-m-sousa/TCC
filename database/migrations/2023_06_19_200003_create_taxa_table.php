@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('simulacao', function (Blueprint $table) {
+        Schema::create('taxa', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
-            $table->string('tipo');
-            $table->decimal('valor', 10, 2);
-            $table->decimal('taxa', 5, 2);
-            $table->integer('tempo');
-            $table->float('parcela', 10, 2);
+            $table->foreignId('tipo_taxa_id');
+            $table->foreignId('banco_id');
+            $table->decimal('valor', 5, 2);
             $table->timestamps();
+
+            $table->foreign('tipo_taxa_id')->references('id')->on('tipo_taxa');
+            $table->foreign('banco_id')->references('id')->on('banco');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('simulacao');
+        Schema::dropIfExists('taxa');
     }
 };

@@ -29,6 +29,7 @@
                                                 <table class="table text-white">
                                                     <thead>
                                                     <tr>
+                                                        <th scope="col">Título</th>
                                                         <th scope="col">Tipo</th>
                                                         <th scope="col">Valor (R$)</th>
                                                         <th scope="col">Taxa (%)</th>
@@ -40,6 +41,7 @@
                                                     <tbody>
                                                         @foreach ($historico as $simulacao)
                                                         <tr>
+                                                            <td>{{ $simulacao->titulo }}</td>
                                                             <td>{{ $simulacao->tipo }}</td>
                                                             <td>{{ $simulacao->valor }}</td>
                                                             <td>{{ $simulacao->taxa }}</td>
@@ -48,9 +50,15 @@
                                                             <td>
                                                                 <a href="{{ route('historico.delete', [$simulacao->id]) }}"><button class="btn btn-danger btn-sm">Excluir</button></a>
                                                                 <a href="{{ route('historico.edit', [$simulacao->id])}}"><button class="btn btn-primary btn-sm">Editar</button></a>
+                                                                <a href="{{ route('historico.exportar', [$simulacao->id])}}"><button class="btn btn-secondary btn-sm">Exportar</button></a>
                                                             </td>
                                                         </tr>
                                                         @endforeach
+                                                        <tr>
+                                                            <td>
+                                                                <a href="{{route('historico.comparar')}}"><button class="btn btn-primary btn-sm">Comparar Simulações</button></a>
+                                                            </td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>

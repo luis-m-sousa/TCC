@@ -3,31 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Banco;
-use Illuminate\Http\Request;
 use App\Models\Simulacao;
-use Illuminate\Mail\Mailables\Content;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB as DB;
 use App\Models\Taxa;
+use App\Models\Tipo_taxa;
 use Carbon\Carbon;
-use DateTime;
-use Illuminate\Support\Facades\Date;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class SimulacaoController extends Controller
+class PessoalPrivadoController extends Controller
 {
-
-    function index()
-    {
-        return view('simulacao.create');
-    }
-
-    public function historico(Request $request)
-    {
-        $usuarioId = auth()->user()->id;
-        $historico = Simulacao::where('user_id', $usuarioId)
-            ->orderBy('id', 'asc')
-            ->paginate(5);
-        return view('historico.index', ['historico' => $historico]);
+    public function index(){
+        return view ('pessoalPrivado.create');
     }
 
     public function store(Request $request)
@@ -64,7 +50,7 @@ class SimulacaoController extends Controller
         $simulacao->tempo = $request->tempo;
         $simulacao->parcela = $request->parcela;
         $simulacao->titulo = $request->titulo;
-        $simulacao->tipo = "Não definido";
+        $simulacao->tipo = "Crédito pessoal consignado privado";
         $simulacao->data_criacao = Carbon::now();
         
         $user_id = Auth::id();
@@ -76,60 +62,32 @@ class SimulacaoController extends Controller
         // Retorna uma resposta de sucesso
         return back()->with('success', 'Simulação salva com sucesso! Acesse a aba "Minhas Simulações" para visualizá-la.');
     }
-    public function delete(Request $request, $id) {
-        $obj = Simulacao::findOrFail($id);
-        $obj->delete();
 
-        return back()->with('success', 'Deleção feita com sucesso!');
+    public function getTaxa($nome)
+    {
+        $banco = Banco::where('nome', $nome)->first();
+        $tipo_taxa = Tipo_taxa::where('id', '2')->first();
+    
+        if ($banco && $tipo_taxa) {
+            $taxa = Taxa::where('banco_id', $banco->id)
+                         ->where('tipo_taxa_id', $tipo_taxa->id)
+                         ->first();
+            if ($taxa) {
+                return response()->json($taxa->valor);
+            }
+        }
+        return response()->json(null);
     }
-
-    public function edit(Request $request, $id) {
-        $simulacao = Simulacao::findOrFail($id);
-        return view('simulacao.edit', ['simulacao' => $simulacao]);
+    
+    public function getBancos(Request $request)
+    {
+        $search = $request->get('q');
+        $result = Banco::where('nome', 'LIKE', '%' . $search . '%')
+            ->whereHas('taxa', function ($query) {
+                $query->where('tipo_taxa_id', 2);
+            })->get();
+        return response()->json($result);
     }
-
-    public function update(Request $request, $id) {
-
-        $simulacao = Simulacao::findOrFail($id);
-        $simulacao->titulo = $request->titulo;
-        $simulacao->valor = $request->valor;
-        $simulacao->taxa = $request->taxa;
-        $simulacao->tempo = $request->tempo;
-        $simulacao->parcela = $request->parcela;
-        $simulacao->save();
-
-        return redirect()->route('historico.index')->with('success', 'Edição feita com sucesso!.');
-    }
-
-    public function obterTaxa(Request $request)
-{
-    $banco = $request->input('banco');
-    $taxa = Taxa::where('banco', $banco)->first();
-
-    if ($taxa) {
-        return response()->json(['taxa' => $taxa->valor]);
-    } else {
-        return response()->json(['taxa' => null]);
-    }
-}
-
-
-public function obterSugestoesBanco(Request $request)
-{
-    $inputText = $request->input('inputText');
-
-    $suggestions = Banco::distinct()
-        ->select('nome')
-        ->where('nome', 'LIKE', '%' . $inputText . '%')
-        ->pluck('nome')
-        ->toArray();
-
-    return response()->json(['suggestions' => $suggestions]);
-}
-
-
-
-
 
 
 }
