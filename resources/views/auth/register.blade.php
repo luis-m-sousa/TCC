@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="h-100 gradient-form" style="background-color: #1e1e1e;">
+<section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-xl-10">
-          <div class="card rounded-3 text-black bg-black text-white">
+          <div class="card rounded-3 text-black bg-white">
             <div class="row g-0">
               <div class="col-lg-6">
                 <div class="card-body p-md-5 mx-md-4">
@@ -57,9 +57,6 @@
                     <div class="text-center pt-1 mb-3">
                       <input type="submit" class="btn btn-primary btn-block fa-lg mb-3" value="Registrar">
                   </div>
-                    <div class="text-center pt-1 mb-3 pb-1">
-                      <button class="btn btn-primary btn-block fa-lg mb-3" type="button"><img class="loginGoogle" src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt=""> Entrar com Google</button>
-                    </div>
                     <div class="d-flex align-items-center justify-content-center pb-4">
                       <p class="mb-0 me-2">Já possui uma conta?</p>
                      <a href="{{ route('login') }}"><input type="button" class="btn btn-outline-danger" value="Login"></a>

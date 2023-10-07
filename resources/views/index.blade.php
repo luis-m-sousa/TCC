@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<section class="h-100 gradient-form" style="background-color: #1e1e1e">
+<section class="h-100 gradient-form">
     <div class="container py-5 h-100">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 text-black bg-white">
                         <div class="row g-0">
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">

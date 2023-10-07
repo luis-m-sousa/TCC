@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="h-100 gradient-form" style="background-color: #1e1e1e">
+<section class="h-100 gradient-form">
     <div class="container py-5 h-100">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 text-black bg-white">
                         <div class="row g-0">
                             <div class="col-lg-6">
                                 <div class="card-body p-md-5 mx-md-4">
@@ -65,16 +65,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-8 offset-md-3">
+                                        <div class="col-md-8 offset-md-5">
                                             <button type="submit" class="btn btn-primary">
                                                 {{ __('Login') }}
                                             </button>
-                                            @if (Route::has('password.request'))
-                                                <a class="btn btn-link text-white"
-                                                    href="{{ route('password.request') }}">
-                                                    {{ __('Esqueceu sua senha?') }}
-                                                </a>
-                                            @endif
                                         </div>
                                         <div class="d-flex align-items-center justify-content-center pb-4 pt-4">
                                             <p class="mb-0 me-2">Não é registrado ainda?</p>

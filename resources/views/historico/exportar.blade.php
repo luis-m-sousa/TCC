@@ -29,10 +29,10 @@
             <tr>
                 <th scope="row">{{ $data->titulo }}</th>
                 <td>{{ $data->tipo }}</td>
-                <td>{{ $data->valor }}</td>
-                <td>{{ $data->taxa }}</td>
+                <td>{{ number_format($data->valor, 2,',','.') }}</td>
+                <td>{{ number_format($data->taxa, 2, ',', '.') }}</td>
                 <td>{{ $data->tempo }}</td>
-                <td>{{ $data->parcela }}</td>
+                <td>{{ number_format($data->parcela, 2, ',', '.') }}</td>
             </tr>
         </tbody>
     </table>

@@ -4,7 +4,7 @@
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-xl-10">
-                <div class="card rounded-3 text-black bg-black text-white">
+                <div class="card rounded-3 text-black bg-white">
                     <div class="row g-0">
                         <div class="card-body p-md-5 mx-md-4">
 
@@ -48,7 +48,7 @@
                                 </div>
                                 <div
                                     class="row text-center justify-content-center align-items-center w-auto text-black">
-                                    <input class="btn btn-primary text-black mb-3 w-auto" type="button"
+                                    <input class="btn btn-primary text-white mb-3 w-auto" type="button"
                                         value="Calcular" onclick="calcular()" >
                                 </div>
                                 <div id="resultado"
@@ -57,7 +57,7 @@
                                         <canvas id="chartDonut"></canvas>
                                 <div id="salvar"
                                     class="row text-center justify-content-center align-items-center w-auto text-black pt-2">
-                                    <input type="submit" value="Salvar" class="btn btn-primary text-black mb-3 w-auto">
+                                    <input type="submit" value="Salvar" class="btn btn-primary text-white mb-3 w-auto">
                                 </div>
                                 @if (session('success'))
                                     <div class="alert alert-success alert-dismissible fade show session-alert bg-black text-white"

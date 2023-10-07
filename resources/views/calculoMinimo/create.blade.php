@@ -4,7 +4,7 @@
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 text-black bg-white">
                         <div class="row g-0">
                             <div class="card-body p-md-5 mx-md-4">
 
@@ -23,7 +23,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('valor')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black sm-2"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black sm-2"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -48,7 +48,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('parcela')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -65,8 +65,8 @@
                                             @enderror
                                         </div>
                                         <div
-                                            class="row text-center justify-content-center align-items-center w-auto text-black">
-                                            <input class="btn btn-primary text-black mb-3 w-auto" type="submit"
+                                            class="row text-center justify-content-center align-items-center w-auto">
+                                            <input class="btn btn-primary mb-3 w-auto" type="submit"
                                                 value="Calcular">
                                         </div>
                                 </form>

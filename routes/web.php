@@ -35,7 +35,7 @@ Route::get('/', function () {
 });
 
 Route::post('/emprestimo',[SimulacaoController::class, 'store'])->name('simulacao.store')->middleware('auth');
-Route::get('/emprestimo', function(){return view('simulacao.create');})->middleware('auth');
+Route::get('/emprestimo', function(){return view('simulacao.create');})->name('simulacao.create')->middleware('auth');
 
 Route::get('/pessoal-privado', [PessoalPrivadoController::class, 'index'])->name('pessoalPrivado.index')->middleware('auth');
 Route::post('/pessoal-privado', [PessoalPrivadoController::class, 'store'])->name('pessoalPrivado.store')->middleware('auth');
