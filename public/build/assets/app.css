@@ -1,6 +1,6 @@
 .gradient-custom-2 {
     /* fallback for old browsers */
-    background: #fccb90;
+    background: #38B000;
     
     /* Chrome 10-25, Safari 5.1-6 */
     background: -webkit-linear-gradient(to right, #38B000,#008000, #007200, #006400);
@@ -29,25 +29,29 @@
         border-color: #38B000 !important; 
         color: #38B000 !important;
     }
-    .btn-outline-danger:hover{
+    ::-webkit-input-placeholder  { 
+        color:rgb(0, 0, 0) !important;
+    }
+    .btn-outline-danger:focus{
         background-color: #38B000 !important;
         color: black !important;
     }
     .btn-primary{
         background-color: #38B000 !important;
         border-color: #008000 !important;
-        color: black !important;
+        color: white !important;
     }
     .btn-primary:hover{
         background-color: #008000 !important;
-        color: black !important;
+        
     }
 
     body, html{
         height: 100% !important;
-        background-color: #1e1e1e !important;
+        background-color: #cacaca !important;
     }
 
     .dropdown-item:active{
         background-color: #38b000 !important;
     }
+    

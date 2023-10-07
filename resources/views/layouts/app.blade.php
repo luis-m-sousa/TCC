@@ -31,11 +31,13 @@
     <script src="{{ asset('js/simulacaov2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{{ asset('build/css/style.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <nav class="navbar navbar-expand-lg navbar-white bg-white">
             <div class="container">
                 <a class="navbar-brand" href="{{route('home')}}">
                     St<img class="loginGoogle" src="{{ asset('build/assets/estrela.png') }}" alt="Estrela"
@@ -54,7 +56,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto text-black">
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
@@ -110,28 +112,4 @@
         </main>
     </div>
 </body>
-<script>
-    document.getElementById('btnSwitch').addEventListener('click', () => {
-  if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
-    document.documentElement.setAttribute('data-bs-theme', 'light');
-  } else {
-    document.documentElement.setAttribute('data-bs-theme', 'dark');
-  }
-});
-
-const theme = window.localStorage.getItem('theme');
-
-if (theme === 'dark') document.body.classList.add('dark');
-
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-
-  if (theme === 'dark') {
-    window.localStorage.setItem('theme', 'light');
-  } else {
-    window.localStorage.setItem('theme', 'dark');
-  }
-});
-
-</script>
 </html>

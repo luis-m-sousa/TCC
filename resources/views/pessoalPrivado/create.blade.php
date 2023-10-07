@@ -4,7 +4,7 @@
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-xl-10">
-                    <div class="card rounded-3 text-black bg-black text-white">
+                    <div class="card rounded-3 text-black bg-white">
                         <div class="row g-0">
                             <div class="card-body p-md-5 mx-md-4">
 
@@ -12,13 +12,32 @@
                                     @csrf
                                     <div class="justify-content-center align-items-center">
                                         <div class="text-center">
-                                            <h4>Empréstimo</h4>
+                                            <h4>Empréstimo Pessoal Consignado Privado</h4>
                                         </div>
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             <input
                                                 class="input-group btn-outline-danger rounded  form-control mt-3 text-black"
                                                 type="text" id="titulo" name="titulo" placeholder="Dê um nome"
                                                 style="width: 40%">
+                                        </div>
+                                        <div class="row text-center justify-content-center align-items-center w-auto">
+                                            @error('titulo')
+                                                <div class="w-50">
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black sm-2 mt-4"
+                                                        role="alert" style="border: none">
+                                                        <div
+                                                            class="alert-heading d-flex justify-content-between align-items-center">
+                                                            <h4 class="alert-heading-text">Erro!</h4>
+                                                            <button type="button" class="close btn btn-danger"
+                                                                data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true"><b>&times;</b></span>
+                                                            </button>
+                                                        </div>
+                                                        <hr>
+                                                        <p class="mb-0">{{ $message }}</p>
+                                                    </div>
+                                                </div>
+                                            @enderror
                                         </div>
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             <input
@@ -29,7 +48,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('valor')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black sm-2"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black sm-2"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -63,7 +82,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('taxa')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -88,7 +107,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('tempo')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -113,7 +132,7 @@
                                         <div class="row text-center justify-content-center align-items-center w-auto">
                                             @error('parcela')
                                                 <div class="w-50">
-                                                    <div class="alert alert-danger alert-dismissible fade show session-alert bg-white text-black"
+                                                    <div class="alert alert-danger alert-dismissible fade show session-alert text-black"
                                                         role="alert" style="border: none">
                                                         <div
                                                             class="alert-heading d-flex justify-content-between align-items-center">
@@ -131,7 +150,7 @@
                                         </div>
                                         <div
                                             class="row text-center justify-content-center align-items-center w-auto text-black">
-                                            <input class="btn btn-primary text-black mb-3 w-auto" type="button"
+                                            <input class="btn btn-primary text-white mb-3 w-auto" type="button"
                                                 value="Calcular" onclick="calcular()">
                                         </div>
                                         <canvas id="chartDonut" class="p-5"></canvas>
@@ -139,10 +158,10 @@
                                         <div id="salvar"
                                             class="row text-center justify-content-center align-items-center w-auto text-black pt-2">
                                             <input type="submit" value="Salvar"
-                                                class="btn btn-primary text-black mb-3 w-auto">
+                                                class="btn btn-primary text-white mb-3 w-auto">
                                         </div>
                                         @if (session('success'))
-                                            <div class="alert alert-success alert-dismissible fade show session-alert bg-black text-white"
+                                            <div class="alert alert-success alert-dismissible fade show session-alert text-white"
                                                 role="alert" style="border: none">
                                                 <div
                                                     class="alert-heading d-flex justify-content-between align-items-center">
